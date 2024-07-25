@@ -17,9 +17,13 @@ Route::get('/region/{region}', [HomeController::class, 'region'])->name('region'
 Route::get('/news/{id}', [HomeController::class, 'detail'])->name('news.detail');
 
 // Authentication routes
+
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post')->middleware('guest');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('register', [AuthController::class, 'showRegistrationForm'])->name('register');
+Route::post('register', [AuthController::class, 'register']);
 
 // Protected routes for admin
 Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
